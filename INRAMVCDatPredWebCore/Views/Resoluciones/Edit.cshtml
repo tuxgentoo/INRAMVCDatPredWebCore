@@ -1,0 +1,66 @@
+﻿@model INRAMVCDatPredWebCore.Models.Resolucion
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Resolucion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ResolcuionId" />
+            <div class="form-group">
+                <label asp-for="IDCarpeta" class="control-label"></label>
+                <input asp-for="IDCarpeta" class="form-control" />
+                <span asp-validation-for="IDCarpeta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgrupacionSocial" class="control-label"></label>
+                <input asp-for="AgrupacionSocial" class="form-control" />
+                <span asp-validation-for="AgrupacionSocial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Poligono" class="control-label"></label>
+                <input asp-for="Poligono" class="form-control" />
+                <span asp-validation-for="Poligono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expediente" class="control-label"></label>
+                <input asp-for="Expediente" class="form-control" />
+                <span asp-validation-for="Expediente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClaseResolucion" class="control-label"></label>
+                <input asp-for="ClaseResolucion" class="form-control" />
+                <span asp-validation-for="ClaseResolucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoResolucion" class="control-label"></label>
+                <input asp-for="TipoResolucion" class="form-control" />
+                <span asp-validation-for="TipoResolucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaRegistro" class="control-label"></label>
+                <input asp-for="FechaRegistro" class="form-control" />
+                <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <select asp-for="Id" class="form-control" asp-items="ViewBag.Id"></select>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

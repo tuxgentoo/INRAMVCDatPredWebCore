@@ -1,0 +1,107 @@
+﻿@model IEnumerable<INRAMVCDatPredWebCore.Models.Carpeta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <div class="form-group form-actions no-color">
+        <p>
+            Filtro: <input class="form-control" type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            @*<input asp-for="IDCarpeta" class="form-control" />*@
+            <input type="submit" value="Buscar" class="btn btn-danger" />
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.IDCarpeta)*@
+                ID Carpeta
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.AgrupacionSocial)*@
+                Agrupacion Social
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Departamento.Nombre)*@
+                Departamento
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Provincia.Nombre)*@
+                Provincia
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Municipio.Nombre)*@
+                Municipio
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Cuerpos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fojas)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Poligono)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.ApplicationUser.Nombres)*@
+                Funcionario
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Ubicacion.Nombre)*@
+                Ubicacion Carpeta
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDCarpeta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgrupacionSocial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provincia.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Municipio.Nombre)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Cuerpos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fojas)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Poligono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Nombres) @Html.DisplayFor(modelItem => item.ApplicationUser.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion.Nombre)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CarpetaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CarpetaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CarpetaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

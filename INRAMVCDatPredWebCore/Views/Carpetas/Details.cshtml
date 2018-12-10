@@ -1,0 +1,36 @@
+﻿@model INRAMVCDatPredWebCore.Models.Carpeta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Carpeta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDCarpeta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IDCarpeta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuerpos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cuerpos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fojas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fojas)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CarpetaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

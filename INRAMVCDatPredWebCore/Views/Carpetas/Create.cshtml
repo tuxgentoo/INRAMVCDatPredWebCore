@@ -1,0 +1,118 @@
+﻿@model INRAMVCDatPredWebCore.Models.Carpeta
+
+@{
+    ViewData["Title"] = "Create";
+}
+@await Html.PartialAsync("_StatusMessage", TempData["mensage"])
+<h2>Create</h2>
+@*@TempData["mensage"]*@
+@*Añadirlo donde se quieren mostrar los mensajes de Bootstrap4*@
+@*@await Html.PartialAsync("_MessagesFixed", (Dictionary<string, string>)TempData["messagesFixed"])*@
+@*@await Html.PartialAsync("_MessagesFixed", (Dictionary<string, string>)TempData["messagesFixed"])*@
+<h4>Carpeta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IDCarpeta" class="control-label">ID Carpeta</label>
+                <input asp-for="IDCarpeta" class="form-control" />
+                <span asp-validation-for="IDCarpeta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgrupacionSocial" class="control-label">Agrupacion Social</label>
+                <input asp-for="AgrupacionSocial" class="form-control" />
+                <span asp-validation-for="AgrupacionSocial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cuerpos" class="control-label"></label>
+                <input asp-for="Cuerpos" class="form-control" />
+                <span asp-validation-for="Cuerpos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fojas" class="control-label"></label>
+                <input asp-for="Fojas" class="form-control" />
+                <span asp-validation-for="Fojas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Poligono" class="control-label"></label>
+                <input asp-for="Poligono" class="form-control" />
+                <span asp-validation-for="Poligono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartamentoId" class="control-label">Departamento</label>
+                <span asp-validation-for="DepartamentoId" class="text-danger"></span>
+                <select asp-for="DepartamentoId" class="form-control" asp-items="ViewBag.DepartamentoId">
+                    <option>Por favor Seleccione el Departamento</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProvinciaId" class="control-label">Provincia</label>
+                <select asp-for="ProvinciaId" class="form-control" asp-items="ViewBag.ProvinciaId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MunicipioId" class="control-label">Municipio</label>
+                <select asp-for="MunicipioId" class="form-control" asp-items="ViewBag.MunicipioId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label">Funcionario</label>
+                <select asp-for="Id" class="form-control" asp-items="ViewBag.UsersId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="UbicacionId" class="control-label">Ubicacion Carpeta</label>
+                <select asp-for="UbicacionId" class="form-control" asp-items="ViewBag.UbicacionId">
+                    <option>Por favor Seleccione la Ubicacion de la Carpeta</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@* Scrip para obtener todas las Provincias segun Departamento *@
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#DepartamentoId").change(function () {
+            var url = '@Url.Content("~/")' + "Carpetas/getProvinciabyid";
+            var ddlsource = "#DepartamentoId";
+            $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+                var items = '';
+                $("#ProvinciaId").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#ProvinciaId").html(items);
+            })
+        });
+    });
+</script>
+
+@* Scrip para obtener todas los Municipios segun Una Provincia *@
+<script>
+    $(function () {
+        $("#ProvinciaId").change(function () {
+            var url = '@Url.Content("~/")' + "Carpetas/getMunicipiobyid";
+            var ddlsource = "#ProvinciaId";
+            $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+                var items = '';
+                $("#MunicipioId").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#MunicipioId").html(items);
+            })
+        });
+    });
+</script>
